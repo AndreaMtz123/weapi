@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteRule ^(lib|tmp|DB|img)/\.(ini|php|cfn|jpg|png|jpeg|gif)$ - [R=404]
+RewriteRule ^img/ - [R=404]
+
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .* index.php [END,QSA]
+
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
